@@ -38,7 +38,6 @@ function App() {
   const [cartStorage, setCartStorage] = useLocalStrage("product", []);
   const [changeSearch, setChangeSearch] = useState([]);
   const [search, setSearch] = useState();
-  const [git,setGit]=useState()
   function useLocalStrage(key, oldValue) {
     const [storedValue, setStoredValue] = useState(() => {
       const getValue = localStorage.getItem(key);
