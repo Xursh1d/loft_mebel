@@ -1,0 +1,43 @@
+@media screen and (min-width: 1250px) {
+  .app {
+    width: 1140px;
+    margin: auto;
+  }
+}
+@media (min-width: 1030px) and (max-width: 1249px) {
+  .app {
+    max-width: 1000px;
+    margin: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 1029px) {
+  .app {
+    max-width: 730px;
+    margin: auto;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .app {
+      margin-top: -5px !important;
+    max-width: 520px;
+    margin: auto;
+  }
+}
+@media (min-width: 450px) and (max-width: 575px) {
+  .app {
+    min-width: 450px;
+    max-width: 530px;
+    margin-top: -10px !important;
+    margin: auto;
+    padding: 0 25px;
+  }
+}
+@media (min-width: 320px) and (max-width: 449px) {
+  .app {
+    min-width: 320px;
+    max-width: 449px;
+    margin-top: -15px !important;
+    margin: auto;
+    padding: 0 15px;
+  }
+}
