@@ -27,7 +27,6 @@ import {
 } from "./api/UrlApi";
 
 function App() {
-  const { slug } = useParams();
   const [menuBar, setMenuBar] = useState(false);
   const [slider, setSlider] = useState([]);
   const [categories, setCategories] = useState([]);
