@@ -1,4 +1,5 @@
 import "./FilterProduct.css";
+import cancel from "../LoftMebelPhoto/cancel.png";
 import * as InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import ReactLoading from "react-loading";
@@ -11,6 +12,8 @@ export default function FilterTable({
   colors,
   minAndMax,
   sizes,
+  setMobileFilter,
+  mobileFilter
 }) {
   const { filterColor, setFilterColor } = useContext(ColorFilter);
   const { filterSize, setFilterSize } = useContext(SizeFilter);
@@ -37,7 +40,11 @@ export default function FilterTable({
     }
   };
   return (
-    <>
+    <div className="update_category">
+      <div className="text_filter">
+        <h6>Filter</h6>
+        <img onClick={()=>setMobileFilter(!mobileFilter)} src={cancel} alt="" />
+      </div>
       <div className="price_filter">
         <h6 className="filter_name">Price</h6>
         {!loaderInputRange ? (
@@ -153,6 +160,6 @@ export default function FilterTable({
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

@@ -3380,6 +3380,7 @@
   }
   .empty_text {
     width: 100%;
+    min-height: 200px;
     display: flex;
     justify-content: center;
     font-size: 18px !important;
@@ -4552,6 +4553,7 @@
   }
   .empty_text {
     width: 100%;
+    height: 100px;
     display: flex;
     justify-content: center;
     font-size: 18px !important;
@@ -4559,6 +4561,7 @@
     font-family: Roboto;
     font-weight: normal;
     align-items: center;
+    margin-bottom: 0 !important;
   }
   .menu {
     display: none;
