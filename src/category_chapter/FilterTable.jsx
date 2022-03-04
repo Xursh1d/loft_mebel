@@ -13,7 +13,7 @@ export default function FilterTable({
   minAndMax,
   sizes,
   setMobileFilter,
-  mobileFilter
+  mobileFilter,
 }) {
   const { filterColor, setFilterColor } = useContext(ColorFilter);
   const { filterSize, setFilterSize } = useContext(SizeFilter);
@@ -43,7 +43,11 @@ export default function FilterTable({
     <div className="update_category">
       <div className="text_filter">
         <h6>Filter</h6>
-        <img onClick={()=>setMobileFilter(!mobileFilter)} src={cancel} alt="" />
+        <img
+          onClick={() => setMobileFilter(!mobileFilter)}
+          src={cancel}
+          alt=""
+        />
       </div>
       <div className="price_filter">
         <h6 className="filter_name">Price</h6>

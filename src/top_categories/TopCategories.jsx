@@ -41,26 +41,33 @@ export default function TopCategories({
       <h5 className="title_category">Home / {filterCategories}</h5>
       <div className="best-sellers category_products">
         <>
-        <button onClick={()=>setMobileFilter(!mobileFilter)} className={slug==="discount"?"discount_filter_btn":"open_filter"}>Filter</button>
-        <div
-          className={
-            slug === "discount"
-              ? "filter_table_disabled"
-              : mobileFilter
-              ? "fiter_category"
-              : "update_category_none"
-          }
-        >
-          <FilterTable
-            mobileFilter={mobileFilter}
-            setMobileFilter={setMobileFilter}
-            colors={colors}
-            price={price}
-            sizes={sizes}
-            setPrice={setPrice}
-            minAndMax={minAndMax}
-          />
-        </div>
+          <button
+            onClick={() => setMobileFilter(!mobileFilter)}
+            className={
+              slug === "discount" ? "discount_filter_btn" : "open_filter"
+            }
+          >
+            Filter
+          </button>
+          <div
+            className={
+              slug === "discount"
+                ? "filter_table_disabled"
+                : mobileFilter
+                ? "fiter_category"
+                : "update_category_none"
+            }
+          >
+            <FilterTable
+              mobileFilter={mobileFilter}
+              setMobileFilter={setMobileFilter}
+              colors={colors}
+              price={price}
+              sizes={sizes}
+              setPrice={setPrice}
+              minAndMax={minAndMax}
+            />
+          </div>
         </>
         {filterLoading ? (
           <div className="loader_category_items">

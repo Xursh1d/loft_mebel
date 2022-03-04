@@ -33,7 +33,7 @@ export default function LogoSearchIcons({
         <IoCartOutline className={`cart_icon_outline ${active_basket_page}`} />
         <IoCart className="cart_icon" />
       </Link>
-      <Link to="/contact" className="cart_link_contact">
+      <Link to="/profile/sign_in" className="cart_link_contact">
         <IoPersonOutline
           className={`contact_icon_outline ${active_contact_page}`}
         />

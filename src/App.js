@@ -25,6 +25,8 @@ import {
   getTopProducts,
   getSearchProduct,
 } from "./api/UrlApi";
+import SignUp from "./profile/SignUp";
+import SignIn from "./profile/SignIn";
 
 function App() {
   const [menuBar, setMenuBar] = useState(false);
@@ -137,6 +139,8 @@ function App() {
                           component={CategoryItems}
                         />
                         <Route path="/search/:slug" component={Term} />
+                        <Route path="/profile/sign_in" component={SignIn}/>
+                        <Route path="/profile/sign_up" component={SignUp}/>
                       </Switch>
                     </ChangeSearchContext.Provider>
                   </TopProductContext.Provider>
