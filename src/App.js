@@ -139,8 +139,8 @@ function App() {
                           component={CategoryItems}
                         />
                         <Route path="/search/:slug" component={Term} />
-                        <Route path="/profile/sign_in" component={SignIn}/>
-                        <Route path="/profile/sign_up" component={SignUp}/>
+                        <Route path="/user/sign_in" component={SignIn}/>
+                        <Route path="/user/sign_up" component={SignUp}/>
                       </Switch>
                     </ChangeSearchContext.Provider>
                   </TopProductContext.Provider>

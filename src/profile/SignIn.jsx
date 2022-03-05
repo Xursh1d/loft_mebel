@@ -27,10 +27,10 @@ export default function SignIn() {
     <div className="profile_page">
       <form className="sign" onSubmit={formik.handleSubmit}>
         <div className="auth_btn">
-          <Link to="/profile/sign_up">
+          <Link to="/user/sign_up">
             <div>Sign Up</div>
           </Link>
-          <Link to="/profile/sign_in">
+          <Link to="/user/sign_in">
             <div className="active_btn">Sign In</div>
           </Link>
         </div>
