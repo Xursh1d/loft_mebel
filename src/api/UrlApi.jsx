@@ -62,3 +62,23 @@ export const getSearchProduct = async (title) => {
   );
   return getSearchItem;
 };
+export const checkEmail = async (email) => {
+  const postEmail = await axios.post(
+    "https://www.uktamjon.uz/api/check-email/",
+    {
+      email: email,
+    }
+  );
+  return postEmail;
+};
+export const checkOtpCode = async (email, token, code) => {
+  const postOtpCode = await axios.post(
+    "https://www.uktamjon.uz/api/check-otp/",
+    {
+      email: email,
+      token: token,
+      code: code,
+    }
+  );
+  return postOtpCode;
+};

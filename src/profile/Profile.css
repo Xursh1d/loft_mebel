@@ -9,6 +9,7 @@
   justify-content: center;
 }
 .sign {
+  position: relative;
   width: 35%;
   padding: 30px;
   display: flex;
@@ -32,6 +33,51 @@
   font-size: 15px;
   line-height: 16px;
   color: #414141;
+}
+.gender {
+  width: 48% !important;
+}
+.css-b62m3t-container{
+  outline: none !important;
+
+}
+.css-1s2u09g-control {
+  border: none !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07) !important;
+  background: #fcfcfc !important;
+  border-radius: 0 !important;
+}
+.css-6j8wv5-Input:after {
+  display: none !important;
+}
+#react-select-2-input {
+  display: none;
+}
+.css-b62m3t-container{
+  border-radius: 0 !important;
+}
+.css-14el2xx-placeholder,
+.css-qc6sy-singleValue,
+#react-select-2-listbox {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 16px;
+  color: #414141;
+}
+.up_input {
+  width: 48% !important;
+  margin: 0 !important;
+}
+.input_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 30px;
+  position: relative;
 }
 .input_container {
   width: 100%;
@@ -80,7 +126,7 @@
 }
 .log_in_btn {
   width: 48%;
-  height:40px;
+  height: 40px;
   background: #245462;
   border: none;
   color: #ffffff;
@@ -108,14 +154,15 @@
 }
 .create_check {
   width: 50%;
-  height: 100%;
+  height: 30px;
   display: flex;
   align-items: center;
+  align-self: flex-start;
   position: relative;
 }
 .checked_show {
   position: absolute;
-  top: 8px;
+  top: 9px;
   left: 3px;
   font-size: 13px;
   color: #ffffff;
@@ -125,7 +172,7 @@
 .checked_none {
   display: none;
 }
-.password_item label {
+.create_check label {
   font-family: Kanit;
   font-style: normal;
   font-weight: normal;
@@ -134,7 +181,7 @@
   color: #414141;
   margin-left: 10px;
 }
-.password_item #show_password {
+#show_password {
   -webkit-appearance: none;
   width: 19px;
   height: 19px;
@@ -145,6 +192,9 @@
 .show_background {
   background: #245462 !important;
 }
+.sign_up_password {
+  margin-top: -10px;
+}
 .forget_link {
   color: #1a73e8;
   font-family: Kanit;
@@ -154,8 +204,14 @@
   line-height: 16px;
   text-decoration: none;
 }
-.next_btn {
-  width: 150px;
+.next_loader_btn {
+  pointer-events: none !important;
+  opacity: 0.8;
+  padding-top: 4px !important;
+}
+.next_btn,
+.next_loader_btn {
+  width: 120px;
   height: 40px;
   display: flex;
   align-self: flex-end;
@@ -169,10 +225,52 @@
   font-weight: normal;
   font-size: 15px;
   line-height: 16px;
+  cursor: pointer;
+  padding-top: 3px;
   text-decoration: none;
 }
 .next_btn:hover {
-  opacity: 0.9;
+  opacity: 0.8;
+}
+.otp_loader {
+  display: flex !important;
+  align-self: center !important;
+  width: 160px;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+.otp_detail {
+  position: relative !important;
+  top: 0px !important;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.disabled_btn {
+  opacity: 0.8;
+  pointer-events: none;
+}
+.loader_spin_auth {
+  width: 25px !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  padding-top: 4px !important;
+}
+.eror_post_request {
+  position: absolute;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 16px;
+  color: firebrick;
+  top: 100px;
 }
 .close_sign_page {
   display: none !important;
@@ -201,7 +299,7 @@
   width: 50px !important;
   height: 50px !important;
   border-radius: 5px !important;
-  font-family:Poppins;
+  font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   font-size: 17px;
@@ -255,6 +353,7 @@
   height: 40px;
   margin-top: 10px;
   margin-bottom: 20px;
+  padding-top: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -277,6 +376,8 @@
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
-}.go_back_btn:hover,.code_next_btn:hover{
+}
+.go_back_btn:hover,
+.code_next_btn:hover {
   opacity: 0.9;
-} 
+}
