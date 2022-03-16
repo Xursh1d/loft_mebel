@@ -8,7 +8,6 @@ const options = [
 
 export default function GenderSelect() {
   const [selectedOption, setSelectedOption] = useState(null);
- console.log(selectedOption)
   return (
     <Select
     className="gender"

@@ -1,29 +1,69 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useFormik} from "formik";
 import * as Yup from "yup";
 import "./Profile.css";
+import Menu from "../homePage/Menu";
+import MenuBar from "../homePage/menuComponents/MenuBar";
+import LogoSearch from "../homePage/LogoSearch";
+import {
+  CategoriesContext,
+  ChangeSearchContext,
+  MenuContext,
+} from "../context/Context";
+import Footer from "../homePage/Footer";
+import Categories from "../homePage/Categories";
+import Input from "../homePage/Input";
+import { useContext } from "react";
+
 export default function SignIn() {
   const formik = useFormik({
     initialValues: {
-      email: "",
+      userName: "",
       password: "",
     },
     onSubmit: (values) => {
       console.log(values);
     },
     validationSchema: Yup.object({
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Enter email"),
+      userName: Yup.string()
+        .required("Enter user name or phone number"),
       password: Yup.string()
         .min(8, "More then 8 characters")
         .required("Enter password"),
     }),
   });
   const [checkPassword, setCheckPassword] = useState(false);
+  const { categories } = useContext(CategoriesContext);
+const [menuBar, setMenuBar] = useContext(MenuContext);
+const { setSearch, setChangeSearch, search} =
+  useContext(ChangeSearchContext);
+useEffect(() => {
+  setSearch([]);
+}, []);
   return (
+    <div onClick={() => setMenuBar(false)}>
+    <MenuBar
+      categories={categories}
+      menuBar={menuBar}
+      setMenuBar={setMenuBar}
+    />
+    <Menu />
+    <LogoSearch
+      active_contact_page="active_page"
+      search={search}
+      setMenuBar={setMenuBar}
+      setChangeSearch={setChangeSearch}
+    />
+    <Input
+      setChangeSearch={setChangeSearch}
+      search={search}
+      style={"mobile-input"}
+      type={"text"}
+      palceholder={"Search"}
+    />
+    <Categories categories={categories} />
     <div className="profile_page">
       <form className="sign" onSubmit={formik.handleSubmit}>
         <div className="auth_btn">
@@ -37,17 +77,17 @@ export default function SignIn() {
         <div className="input_container">
           <input
             className={
-              formik.errors.email && formik.touched.email ? "error_value" : null
+              formik.errors.userName && formik.touched.userName ? "error_value" : null
             }
-            name="email"
-            type="email"
+            name="userName"
+            type="text"
             onBlur={formik.handleBlur}
-            placeholder="Email"
+            placeholder="User name or phone number"
             onChange={formik.handleChange}
-            value={formik.values.email}
+            value={formik.values.userName}
           />
-          {formik.errors.email && formik.touched.email ? (
-            <p className="required">{formik.errors.email}</p>
+          {formik.errors.userName && formik.touched.userName ? (
+            <p className="required">{formik.errors.userName}</p>
           ) : null}
         </div>
         <div className="input_container">
@@ -90,5 +130,8 @@ export default function SignIn() {
         </button>
       </form>
     </div>
+    <Footer categories={categories} />
+  </div>
   );
 }
+

@@ -63,13 +63,13 @@ export const getSearchProduct = async (title) => {
   return getSearchItem;
 };
 export const checkEmail = async (email) => {
-  const postEmail = await axios.post(
+  const response = await axios.post(
     "https://www.uktamjon.uz/api/check-email/",
     {
       email: email,
     }
   );
-  return postEmail;
+  return response;
 };
 export const checkOtpCode = async (email, token, code) => {
   const postOtpCode = await axios.post(
