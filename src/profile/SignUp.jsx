@@ -14,17 +14,29 @@ import Footer from "../homePage/Footer";
 import Categories from "../homePage/Categories";
 import Input from "../homePage/Input";
 import { useContext } from "react";
+import ReactLoading from "react-loading";
 import CreateAccount from "./CreateAccount";
-
+import '../homePage/Home.css'
 export default function SignUp() {
-  const { categories } = useContext(CategoriesContext);
+  const { categories,loading } = useContext(CategoriesContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
   const { setSearch, setChangeSearch, search } =
     useContext(ChangeSearchContext);
   useEffect(() => {
     setSearch([]);
   }, []);
-  return (
+  return loading ? (
+    <div className="loader">
+      <h6>Loading</h6>
+      <ReactLoading
+        className="loading"
+        type={"spinningBubbles"}
+        color={"#245462"}
+        height={"50px"}
+        width={"50px"}
+      />
+    </div>
+  ) : (
     <div onClick={() => setMenuBar(false)}>
       <MenuBar
         categories={categories}

@@ -69,6 +69,7 @@ function App() {
   };
 
   useEffect(() => {
+    setLoading(true)
     getCategories().then((categorie) => {
       setCategories(categorie.data);
       setLoading(false);

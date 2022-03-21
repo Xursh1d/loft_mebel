@@ -5,8 +5,50 @@ import stock from "../../LoftMebelPhoto/stock.svg";
 import { photoUrl } from "./../../helpers/photo_url_fixer";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
+import { useContext } from "react";
+import { StorageContext } from "../../context/Context";
 
 export default function BestSellers({ topProduct, categoryId }) {
+  const { cartStorage, setCartStorage } = useContext(StorageContext);
+  const addLocalStorage = (
+    size,
+    photo,
+    title,
+    color,
+    id,
+    price,
+    discount,
+    discounted_price
+  ) => {
+    const data = {
+      quantity: 1,
+      selectSize: `${size.height} sm × ${size.width} sm × ${size.length} sm`,
+      product_photo: `${photo}`,
+      product_title: `${title}`,
+      color_id: `${color.id}`,
+      color_title: `${color.title}`,
+      color_hex_code: `${color.hex_code}`,
+      productId: `${id}`,
+      productPrice: `${price}`,
+      discount: `${discount}`,
+      discounted_price: `${discounted_price}`,
+    };
+    if (cartStorage.length) {
+      const updateCart = cartStorage.filter(
+        (item) =>
+          item.productId === data.productId &&
+          item.color_id === data.color_id &&
+          item.selectSize === data.selectSize
+      );
+      if (updateCart.length > 0) {
+        setCartStorage(cartStorage);
+      } else {
+        setCartStorage([...cartStorage, data]);
+      }
+    } else {
+      setCartStorage([...cartStorage, data]);
+    }
+  };
   return (
     <div className="best-sellers">
       {categoryId ? <h5>{categoryId}</h5> : <h5>Best-Sellers</h5>}
@@ -20,6 +62,7 @@ export default function BestSellers({ topProduct, categoryId }) {
             photo,
             price,
             size,
+            color,
             discount,
             discounted_price,
           } = item;
@@ -89,8 +132,22 @@ export default function BestSellers({ topProduct, categoryId }) {
                       </div>
                     ))}
                   </div>
-                  <Link to="/basket">
-                    <button className="add-to-cart">
+                  <Link>
+                    <button
+                      onClick={() =>
+                        addLocalStorage(
+                          size[0],
+                          photo,
+                          title,
+                          color[0],
+                          id,
+                          price,
+                          discount,
+                          discounted_price
+                        )
+                      }
+                      className="add-to-cart"
+                    >
                       <p>Add to cart</p>
                     </button>
                   </Link>

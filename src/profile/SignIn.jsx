@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import { FaCheck } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import React, { useEffect } from "react";
 import "./Profile.css";
 import Menu from "../homePage/Menu";
+import LogIn from "./LogIn";
 import MenuBar from "../homePage/menuComponents/MenuBar";
 import LogoSearch from "../homePage/LogoSearch";
 import {
@@ -16,37 +12,31 @@ import {
 import Footer from "../homePage/Footer";
 import Categories from "../homePage/Categories";
 import Input from "../homePage/Input";
+import ReactLoading from "react-loading";
+import '../homePage/Home.css'
 import { useContext } from "react";
 
 export default function SignIn() {
-  const formik = useFormik({
-    initialValues: {
-      userName: "",
-      password: "",
-    },
-    onSubmit: (values) => {
-      console.log(values);
-    },
-    validationSchema: Yup.object({
-      userName: Yup.string().required("Enter user name or phone number"),
-      password: Yup.string()
-        .min(8, "More then 8 characters")
-        .required("Enter password"),
-    }),
-  });
-  const [checkPassword, setCheckPassword] = useState(false);
-  const { categories } = useContext(CategoriesContext);
+  const { categories,loading } = useContext(CategoriesContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
   const { setSearch, setChangeSearch, search } =
     useContext(ChangeSearchContext);
   useEffect(() => {
     setSearch([]);
   }, []);
-  const history=useHistory();
-  const handelHistory=()=>{
-    history.goBack()
-  }
-  return (
+
+  return loading ? (
+    <div className="loader">
+      <h6>Loading</h6>
+      <ReactLoading
+        className="loading"
+        type={"spinningBubbles"}
+        color={"#245462"}
+        height={"50px"}
+        width={"50px"}
+      />
+    </div>
+  ) : (
     <div onClick={() => setMenuBar(false)}>
       <MenuBar
         categories={categories}
@@ -68,76 +58,7 @@ export default function SignIn() {
         palceholder={"Search"}
       />
       <Categories categories={categories} />
-      <div className="profile_page">
-        <form className="sign" onSubmit={formik.handleSubmit}>
-          <div className="auth_btn">
-            <Link to="/user/sign_up">
-              <div>Sign Up</div>
-            </Link>
-            <Link to="/user/sign_in">
-              <div className="active_btn">Sign In</div>
-            </Link>
-          </div>
-          <div className="input_container">
-            <input
-              className={
-                formik.errors.userName && formik.touched.userName
-                  ? "error_value"
-                  : null
-              }
-              name="userName"
-              type="text"
-              onBlur={formik.handleBlur}
-              placeholder="Username or phone number"
-              onChange={formik.handleChange}
-              value={formik.values.userName}
-            />
-            {formik.errors.userName && formik.touched.userName ? (
-              <p className="required">{formik.errors.userName}</p>
-            ) : null}
-          </div>
-          <div className="input_container">
-            <input
-              className={
-                formik.errors.password && formik.touched.password
-                  ? "error_value"
-                  : null
-              }
-              name="password"
-              type={checkPassword ? "text" : "password"}
-              placeholder="Password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-            />
-            {formik.errors.password && formik.touched.password ? (
-              <p className="required">{formik.errors.password}</p>
-            ) : null}
-          </div>
-          <div className="password_item">
-            <div className="create_check">
-              <input
-                type="checkbox"
-                className={checkPassword ? "show_background" : ""}
-                id="show_password"
-                onChange={() => setCheckPassword(!checkPassword)}
-              />
-              <label htmlFor="show_password">Show password</label>
-              <FaCheck
-                className={checkPassword ? "checked_show" : "checked_none"}
-              />
-            </div>
-            <Link to="/" className="forget_link">
-              Forget password ?
-            </Link>
-          </div>
-          <button
-          onClick={()=>handelHistory()}
-          type="submit" className="log_in_btn">
-            Log In
-          </button>
-        </form>
-      </div>
+      <LogIn />
       <Footer categories={categories} />
     </div>
   );

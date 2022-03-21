@@ -1,6 +1,6 @@
 .toastBody{
   font-family: Poppins;
-  font-size:15px!important;
+  font-size:14px!important;
 }
 .toast_error{
   background: #e92d2d !important;
@@ -151,20 +151,30 @@ opacity: 1 !important;
   color: #414141;
   letter-spacing: 0.5px;
 }
-.log_in_btn {
+.log_in_btn ,
+.log_in_loader {
   width: 48%;
   height: 40px;
   background: #245462;
   border: none;
   color: #ffffff;
   font-family: Kanit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
 }
-.log_in_btn:hover {
-  opacity: 0.9;
+.log_in_loader{
+  pointer-events: none !important;
+  opacity: 0.8;
+  padding-top: 4px !important; 
 }
+.log_in_btn:hover {
+  opacity: 0.8;
+}
+
 .auth_btn div:hover,
 .active_btn {
   background: #dbf1f8 !important;

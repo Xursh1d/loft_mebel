@@ -100,3 +100,10 @@ export const createAccount = async (
   });
   return response;
 };
+export const checkUserName = async (username, password) => {
+  const response = await axios.post("https://www.uktamjon.uz/api/login/", {
+    username: username,
+    password: password,
+  });
+  return response;
+};

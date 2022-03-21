@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import CheckEmail from "./CheckEmail";
 import CheckOtp from "./CheckOtp";
 import PostUserName from "./PostUserName";
+import Fade from "react-reveal/Fade";
+
 
 export default function CreateAccount() {
   const [userToken, setUserToken] = useState();
@@ -11,8 +13,6 @@ export default function CreateAccount() {
   const [otpStatus, setOtpStatus] = useState(false);
   const [email, setEmail] = useState();
   const [time, setTime] = useState(false);
-
-
 
   const dataError = (err) => {
     if (err === "USER_EXISTS") {
@@ -82,7 +82,7 @@ export default function CreateAccount() {
   };
 
   return (
-    <>
+    <Fade>
       <ToastContainer bodyClassName="toastBody" />
       <div className="profile_page sign_up_page">
         <CheckEmail
@@ -112,6 +112,6 @@ export default function CreateAccount() {
           signUpError={signUpError}
         />
       </div>
-    </>
+    </Fade>
   );
 }
