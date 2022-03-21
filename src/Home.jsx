@@ -12,7 +12,7 @@ import {
   TopProductContext,
   ChangeSearchContext,
 } from "./context/Context";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import Input from "./homePage/Input";
 import Slider from "./homePage/silder/Slider";
 import Footer from "./homePage/Footer";

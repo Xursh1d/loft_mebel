@@ -82,3 +82,21 @@ export const checkOtpCode = async (email, token, code) => {
   );
   return postOtpCode;
 };
+export const createAccount = async (
+  token,
+  fullname,
+  phone,
+  password,
+  gender,
+  photo
+) => {
+  const response = await axios.post("https://www.uktamjon.uz/api/sign-up/", {
+    token: token,
+    fullname: fullname,
+    phone: phone,
+    password: password,
+    gender: gender,
+    photo: photo,
+  });
+  return response;
+};
