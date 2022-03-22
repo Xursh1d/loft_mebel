@@ -3,6 +3,7 @@ import { checkUserName } from "../api/UrlApi";
 import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
+import { Zoom } from "react-toastify";
 import { ToastContainer, toast } from "react-toastify";
 import { useFormik } from "formik";
 import { useHistory } from "react-router";
@@ -14,7 +15,7 @@ export default function LogIn() {
   const [postLoader, setPostLoader] = useState(false);
   const [logInStatus, setLogInStatus] = useState();
 
-  const history = useHistory();  
+  const history = useHistory();
   if (logInStatus) {
     history.goBack();
   }
@@ -67,96 +68,98 @@ export default function LogIn() {
     }),
   });
   return (
-    <Fade>
-      <ToastContainer bodyClassName="toastBody" />
-      <div className="profile_page">
-        <form className="sign" onSubmit={formik.handleSubmit}>
-          <div className="auth_btn">
-            <Link to="/user/sign_up">
-              <div>Sign Up</div>
-            </Link>
-            <Link to="/user/sign_in">
-              <div className="active_btn">Sign In</div>
-            </Link>
-          </div>
-          <div className="input_container">
-            <input
-              className={
-                formik.errors.userName && formik.touched.userName
-                  ? "error_value"
-                  : null
-              }
-              name="userName"
-              type="text"
-              onBlur={formik.handleBlur}
-              placeholder="Username or phone number"
-              onChange={formik.handleChange}
-              value={formik.values.userName}
-            />
-            {formik.errors.userName && formik.touched.userName ? (
-              <p className="required">{formik.errors.userName}</p>
-            ) : null}
-          </div>
-          <div className="input_container">
-            <input
-              className={
-                formik.errors.password && formik.touched.password
-                  ? "error_value"
-                  : null
-              }
-              name="password"
-              type={checkPassword ? "text" : "password"}
-              placeholder="Password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-            />
-            {formik.errors.password && formik.touched.password ? (
-              <p className="required">{formik.errors.password}</p>
-            ) : null}
-          </div>
-          <div className="password_item">
-            <div className="create_check">
+    <>
+      <ToastContainer transition={Zoom} bodyClassName="toastBody" />
+      <Fade>
+        <div className="profile_page">
+          <form className="sign" onSubmit={formik.handleSubmit}>
+            <div className="auth_btn">
+              <Link to="/user/sign_up">
+                <div>Sign Up</div>
+              </Link>
+              <Link to="/user/sign_in">
+                <div className="active_btn">Sign In</div>
+              </Link>
+            </div>
+            <div className="input_container">
               <input
-                type="checkbox"
-                className={checkPassword ? "show_background" : ""}
-                id="show_password"
-                onChange={() => setCheckPassword(!checkPassword)}
+                className={
+                  formik.errors.userName && formik.touched.userName
+                    ? "error_value"
+                    : null
+                }
+                name="userName"
+                type="text"
+                onBlur={formik.handleBlur}
+                placeholder="Username or phone number"
+                onChange={formik.handleChange}
+                value={formik.values.userName}
               />
-              <label htmlFor="show_password">Show password</label>
-              <FaCheck
-                className={checkPassword ? "checked_show" : "checked_none"}
-              />
+              {formik.errors.userName && formik.touched.userName ? (
+                <p className="required">{formik.errors.userName}</p>
+              ) : null}
             </div>
-            <Link to="/" className="forget_link">
-              Forget password ?
-            </Link>
-          </div>
-          {postLoader ? (
-            <div className="log_in_loader">
-              <ReactLoading
-                className="loader_spin_auth"
-                type={"spin"}
-                color={"#ffffff"}
-                height={"20px"}
-                width={"30px"}
+            <div className="input_container">
+              <input
+                className={
+                  formik.errors.password && formik.touched.password
+                    ? "error_value"
+                    : null
+                }
+                name="password"
+                type={checkPassword ? "text" : "password"}
+                placeholder="Password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
               />
+              {formik.errors.password && formik.touched.password ? (
+                <p className="required">{formik.errors.password}</p>
+              ) : null}
             </div>
-          ) : (
-            <button
-              disabled={!formik.isValid}
-              type="submit"
-              className={
-                formik.isValid && formik.values.password
-                  ? "log_in_btn"
-                  : "log_in_btn disabled_btn"
-              }
-            >
-              Log In
-            </button>
-          )}
-        </form>
-      </div>
-    </Fade>
+            <div className="password_item">
+              <div className="create_check">
+                <input
+                  type="checkbox"
+                  className={checkPassword ? "show_background" : ""}
+                  id="show_password"
+                  onChange={() => setCheckPassword(!checkPassword)}
+                />
+                <label htmlFor="show_password">Show password</label>
+                <FaCheck
+                  className={checkPassword ? "checked_show" : "checked_none"}
+                />
+              </div>
+              <Link to="/" className="forget_link">
+                Forget password ?
+              </Link>
+            </div>
+            {postLoader ? (
+              <div className="log_in_loader">
+                <ReactLoading
+                  className="loader_spin_auth"
+                  type={"spin"}
+                  color={"#ffffff"}
+                  height={"20px"}
+                  width={"30px"}
+                />
+              </div>
+            ) : (
+              <button
+                disabled={!formik.isValid}
+                type="submit"
+                className={
+                  formik.isValid && formik.values.password
+                    ? "log_in_btn"
+                    : "log_in_btn disabled_btn"
+                }
+              >
+                Log In
+              </button>
+            )}
+          </form>
+        </div>
+      </Fade>
+    </>
   );
 }

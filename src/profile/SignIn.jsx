@@ -59,7 +59,6 @@ export default function SignIn() {
       />
       <Categories categories={categories} />
       <LogIn />
-      <Footer categories={categories} />
     </div>
   );
 }

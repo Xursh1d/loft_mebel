@@ -4,8 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import CheckEmail from "./CheckEmail";
 import CheckOtp from "./CheckOtp";
 import PostUserName from "./PostUserName";
-import Fade from "react-reveal/Fade";
-
+import { Zoom } from "react-toastify";
 
 export default function CreateAccount() {
   const [userToken, setUserToken] = useState();
@@ -82,8 +81,10 @@ export default function CreateAccount() {
   };
 
   return (
-    <Fade>
-      <ToastContainer bodyClassName="toastBody" />
+    <>
+      <ToastContainer 
+      transition={Zoom}
+      bodyClassName="toastBody" />
       <div className="profile_page sign_up_page">
         <CheckEmail
           setEmail={setEmail}
@@ -112,6 +113,6 @@ export default function CreateAccount() {
           signUpError={signUpError}
         />
       </div>
-    </Fade>
+    </>
   );
 }

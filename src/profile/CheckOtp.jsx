@@ -63,7 +63,7 @@ export default function CheckOtp({
     <Fade>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className={status && !otpStatus ? "sign" : "close_sign_page"}
+        className={status && !otpStatus ? "sign mobile_otp" : "close_sign_page"}
       >
         <h1 className="title_enter_code">Enter Confirmation Code</h1>
         <p className="sent_code_gmail">

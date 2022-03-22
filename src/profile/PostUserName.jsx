@@ -74,9 +74,8 @@ export default function PostUserName({ otpStatus, signUpError, userToken }) {
         className={otpStatus ? "sign" : "close_sign_page"}
       >
         <h1 className="title_enter_code">Create New Account</h1>
-        <p className="eror_post_request"></p>
         <div className="input_row">
-          <div className="input_container up_input">
+          <div className="input_container up_input fullname">
             <input
               className={
                 formik.errors.fullName && formik.touched.fullName

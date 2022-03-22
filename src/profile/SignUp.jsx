@@ -59,7 +59,6 @@ export default function SignUp() {
       />
       <Categories categories={categories} />
       <CreateAccount />
-      <Footer categories={categories} />
     </div>
   );
 }
