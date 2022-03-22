@@ -1893,6 +1893,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 70px 0;
   }
   .sign_up_page {
     min-height: 200px !important;
@@ -1919,7 +1920,7 @@
     font-family: Kanit;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 14px;
     color: #414141;
   }
   .gender {
@@ -1930,7 +1931,7 @@
   }
   .css-1s2u09g-control {
     border: none !important;
-    min-height: 30px !important;
+    min-height: 40px !important;
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07) !important;
     background: #fcfcfc !important;
     border-radius: 0 !important;
@@ -1950,7 +1951,7 @@
     font-family: Kanit;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 16px;
     color: #414141;
     padding: 0px 5px;
@@ -1969,13 +1970,13 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 90px;
+    height: 100px;
     margin-bottom: 20px;
     position: relative;
   }
   .input_container {
     width: 100%;
-    height: 35px;
+    height: 40px;
     margin-bottom: 20px;
     position: relative;
   }
@@ -1991,11 +1992,11 @@
   }
   .auth_btn {
     width: 100%;
-    height: 40px;
+    height: 45px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
   .auth_btn a {
     width: 48%;
@@ -2020,7 +2021,7 @@
   .log_in_btn,
   .log_in_loader {
     width: 48%;
-    height: 35px;
+    height: 40px;
     background: #245462;
     border: none;
     color: #ffffff;
@@ -2035,7 +2036,7 @@
   .log_in_loader {
     pointer-events: none !important;
     opacity: 0.8;
-    padding-top: 0px !important;
+    padding-top: 2px !important;
   }
   .log_in_btn:hover {
     opacity: 0.8;
@@ -2107,14 +2108,14 @@
   .next_loader_btn {
     pointer-events: none !important;
     opacity: 0.8;
-    padding-top: 1px !important;
+    padding-top: 3px !important;
   }
   .next_btn,
   .next_loader_btn {
-    width: 120px;
-    height: 35px;
+    width: 150px;
+    height: 40px;
     display: flex;
-    align-self: flex-end;
+    align-self: center;
     align-items: center;
     justify-content: center;
     border: none;
@@ -2125,7 +2126,8 @@
     font-weight: normal;
     font-size: 14px;
     cursor: pointer;
-    padding-top: 3px;
+    padding-top: 2px;
+    margin-top: 20px;
     text-decoration: none;
   }
   .next_btn:hover {
@@ -2135,7 +2137,7 @@
     display: flex !important;
     align-self: center !important;
     width: 150px;
-    height: 35px;
+    height: 40px;
     margin: 15px 0;
     display: flex;
     align-items: center;
@@ -2232,7 +2234,7 @@
   }
   .code_next_btn {
     width: 150px;
-    height: 35px;
+    height: 40px;
     margin: 15px 0;
     display: flex;
     align-items: center;
@@ -2248,7 +2250,7 @@
   .go_back_btn {
     border: none;
     width: 150px;
-    height: 35px;
+    height: 40px;
     background: #dbf1f8 !important;
     color: #245462 !important;
     font-family: Poppins;
@@ -2270,7 +2272,7 @@
   }
   .upload_image {
     position: relative;
-    height: 35px;
+    height: 40px !important;
     width: 40% !important;
     background: #fcfcfc;
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
@@ -2279,7 +2281,7 @@
     font-family: Kanit;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 14px;
   }
   .upload_image::after {
     position: absolute;
@@ -2356,7 +2358,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 40px;
+    margin: 50px 0;
   }
   .sign_up_page {
     min-height: 200px !important;
@@ -2371,7 +2373,6 @@
     justify-content: center;
     flex-direction: column;
     background: #ffffff;
-    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.11); */
   }
   .mobile_otp {
     padding: 0 20px !important ;
@@ -2387,7 +2388,7 @@
     font-family: Kanit;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 14px;
     color: #414141;
   }
   .gender {
@@ -2398,7 +2399,7 @@
   }
   .css-1s2u09g-control {
     border: none !important;
-    min-height: 30px !important;
+    min-height: 40px !important;
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07) !important;
     background: #fcfcfc !important;
     border-radius: 0 !important;
@@ -2418,7 +2419,7 @@
     font-family: Kanit;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 14px;
     color: #414141;
     padding: 0px 5px;
   }
@@ -2436,13 +2437,13 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 90px;
+    height: 100px;
     margin-bottom: 20px;
     position: relative;
   }
   .input_container {
     width: 100%;
-    height: 35px;
+    height: 40px;
     margin-bottom: 20px;
     position: relative;
   }
@@ -2458,11 +2459,11 @@
   }
   .auth_btn {
     width: 100%;
-    height: 40px;
+    height: 42px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
   }
   .auth_btn a {
     width: 48%;
@@ -2487,7 +2488,7 @@
   .log_in_btn,
   .log_in_loader {
     width: 48%;
-    height: 35px;
+    height: 42px;
     background: #245462;
     border: none;
     color: #ffffff;
@@ -2502,7 +2503,7 @@
   .log_in_loader {
     pointer-events: none !important;
     opacity: 0.8;
-    padding-top: 0px !important;
+    padding-top: 3px !important;
   }
   .log_in_btn:hover {
     opacity: 0.8;
@@ -2574,14 +2575,15 @@
   .next_loader_btn {
     pointer-events: none !important;
     opacity: 0.8;
-    padding-top: 1px !important;
+    padding-top: 3px !important;
   }
   .next_btn,
   .next_loader_btn {
-    width: 120px;
-    height: 35px;
+    width: 150px;
+    height: 42px;
     display: flex;
-    align-self: flex-end;
+    margin-top: 20px;
+    align-self:center;
     align-items: center;
     justify-content: center;
     border: none;
@@ -2602,7 +2604,7 @@
     display: flex !important;
     align-self: center !important;
     width: 150px;
-    height: 35px;
+    height: 40px;
     margin: 15px 0;
     display: flex;
     align-items: center;
@@ -2699,7 +2701,7 @@
   }
   .code_next_btn {
     width: 150px;
-    height: 35px;
+    height: 40px;
     margin: 15px 0;
     display: flex;
     align-items: center;
@@ -2715,7 +2717,7 @@
   .go_back_btn {
     border: none;
     width: 150px;
-    height: 35px;
+    height: 40px;
     background: #dbf1f8 !important;
     color: #245462 !important;
     font-family: Poppins;
@@ -2737,7 +2739,7 @@
   }
   .upload_image {
     position: relative;
-    height: 35px;
+    height: 40px;
     width: 40% !important;
     background: #fcfcfc;
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.07);
@@ -2746,7 +2748,7 @@
     font-family: Kanit;
     font-style: normal;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 14px;
   }
   .upload_image::after {
     position: absolute;

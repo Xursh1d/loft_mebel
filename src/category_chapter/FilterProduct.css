@@ -69,7 +69,6 @@
     font-weight: 400;
     line-height: 14px;
     letter-spacing: 0em;
-    text-align: left;
     color: #969696;
   }
   .update_category {
@@ -1201,7 +1200,7 @@
     font-weight: 400;
     line-height: 11px;
     letter-spacing: 0em;
-    text-align: left;
+    margin-top: 40px ;
     color: #969696;
   }
   .update_category {
@@ -1546,7 +1545,7 @@
     font-weight: 400;
     line-height: 11px;
     letter-spacing: 0em;
-    text-align: left;
+    margin-top: 30px;
     color: #969696;
   }
   .update_category {

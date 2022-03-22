@@ -2005,7 +2005,8 @@
   }
   .product-adress {
     margin: 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-top: 40px;
     font-family: Roboto;
     text-transform: capitalize;
     font-size: 12px;
@@ -2531,7 +2532,7 @@
   }
   .product-adress {
     margin: 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-family: Roboto;
     font-size: 11px;
     text-transform: capitalize;
@@ -2539,6 +2540,7 @@
     font-weight: 400;
     line-height: 14px;
     color: #969696;
+    margin-top: 30px;
   }
   .product-photos {
     width: 100%;
