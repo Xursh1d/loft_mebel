@@ -51,7 +51,6 @@ export default function Term() {
       />
       <Menu />
       <LogoSearch
-        active_basket_page="active_page"
         setMenuBar={setMenuBar}
         search={search}
         setChangeSearch={setChangeSearch}

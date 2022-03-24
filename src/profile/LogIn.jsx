@@ -131,7 +131,7 @@ export default function LogIn() {
                 />
               </div>
               <Link to="/" className="forget_link">
-                Forget password ?
+                Forget your password ?
               </Link>
             </div>
             {postLoader ? (

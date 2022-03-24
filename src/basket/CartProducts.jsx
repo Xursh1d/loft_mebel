@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import CartProduct from "./CartProduct";
 
 export default function CartProducts({ cartStorage, removeLocalStorage }) {
@@ -29,7 +30,9 @@ export default function CartProducts({ cartStorage, removeLocalStorage }) {
           <p>Total cost:</p>
           <h4>{allSumma} $</h4>
         </span>
-        <button className="btn_palce_order">Place an order</button>
+       <Link to="/my_orders">
+        <button className="btn_palce_order">Place an order</button>       
+       </Link>
       </div>
     </div>
   );

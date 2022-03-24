@@ -1,14 +1,13 @@
-import React from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import { photoUrl } from "../helpers/photo_url_fixer";
 import etc from "../LoftMebelPhoto/etc.png";
 import Vector from "../LoftMebelPhoto/Vector.png";
-import Fade from 'react-reveal/Fade';
+import Fade from "react-reveal/Fade";
 import { FaAngleDown } from "react-icons/fa";
 
-export default function Categories({ categories}) {
-  
+export default function Categories({ categories }) {
   return (
     <div>
       <ul className="categories">
@@ -18,7 +17,7 @@ export default function Categories({ categories}) {
               <Fade key={category.id}>
                 <div className="category-title">
                   <Link className="category" to={`/category/${category.slug}`}>
-                    <li >
+                    <li>
                       <div className="mobile-category-icon">
                         <img
                           style={{ marginRight: 10 }}
@@ -34,9 +33,7 @@ export default function Categories({ categories}) {
                     {category.children.map((child) => {
                       return (
                         <Link key={child.id} to={`/category/${child.slug}`}>
-                          <li className="child-element" >
-                            {child.title}
-                          </li>
+                          <li className="child-element">{child.title}</li>
                         </Link>
                       );
                     })}
@@ -47,11 +44,11 @@ export default function Categories({ categories}) {
           } else {
             return (
               <Fade key={category.id}>
-                <div className="category-title">
+                <div
+                  className="category-title"
+                >
                   <Link className="category" to={`/category/${category.slug}`}>
-                    <li
-                      key={category.id}
-                    >
+                    <li key={category.id}>
                       <div className="mobile-category-icon">
                         <img
                           style={{ marginRight: 10 }}
@@ -69,12 +66,12 @@ export default function Categories({ categories}) {
         })}
         <Fade>
           <Link className="mobile-stock" to="/category/discount">
-          <li className="stock">
-            <div className="mobile-category-icon">
-              <img className="vector" src={Vector} alt="" />
-            </div>
-            <p>Stock</p>
-          </li>
+            <li className="stock">
+              <div className="mobile-category-icon">
+                <img className="vector" src={Vector} alt="" />
+              </div>
+              <p>Stock</p>
+            </li>
           </Link>
         </Fade>
         <li className="etc">

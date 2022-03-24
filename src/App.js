@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Home from "./Home";
 import Basket from "./Basket";
@@ -27,6 +26,7 @@ import {
 } from "./api/UrlApi";
 import SignUp from "./profile/SignUp";
 import SignIn from "./profile/SignIn";
+import MyOrders from "./my_orders/MyOrders";
 
 function App() {
   const [menuBar, setMenuBar] = useState(false);
@@ -39,6 +39,7 @@ function App() {
   const [cartStorage, setCartStorage] = useLocalStrage("product", []);
   const [changeSearch, setChangeSearch] = useState([]);
   const [search, setSearch] = useState();
+  
   function useLocalStrage(key, oldValue) {
     const [storedValue, setStoredValue] = useState(() => {
       const getValue = localStorage.getItem(key);
@@ -69,7 +70,7 @@ function App() {
   };
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getCategories().then((categorie) => {
       setCategories(categorie.data);
       setLoading(false);
@@ -101,6 +102,7 @@ function App() {
   const getCategoryId = (slug) => {
     setCatgeoryId(slug);
   };
+
   return (
     <div className="app">
       <Router>
@@ -140,8 +142,9 @@ function App() {
                           component={CategoryItems}
                         />
                         <Route path="/search/:slug" component={Term} />
-                        <Route path="/user/sign_in" component={SignIn}/>
-                        <Route path="/user/sign_up" component={SignUp}/>
+                        <Route path="/user/sign_in" component={SignIn} />
+                        <Route path="/user/sign_up" component={SignUp} />
+                        <Route path="/my_orders" component={MyOrders} />
                       </Switch>
                     </ChangeSearchContext.Provider>
                   </TopProductContext.Provider>

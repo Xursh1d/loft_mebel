@@ -1232,16 +1232,12 @@
     color: #414141;
     padding-left: 40px;
   }
-  .text_filter img {
-    width: 30px;
-    padding: 8px;
+  .text_filter .cancel_icon {
+    font-size: 25px;
     cursor: pointer;
-    height: 30px;
+    color: #e92d2d;
     border-radius: 50%;
     margin-right: -10px;
-  }
-  .text_filter img:hover {
-    background-color: #f9f9f9;
   }
   .fiter_category {
     position: absolute;
@@ -1570,24 +1566,20 @@
     justify-content: center;
     width: 90%;
     height: 100%;
-    font-family: Roboto;
+    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 16px;
     color: #414141;
     padding-left: 40px;
   }
-  .text_filter img {
-    width: 30px;
-    padding: 8px;
+  .text_filter .cancel_icon {
+    font-size: 25px;
     cursor: pointer;
-    height: 30px;
+    color: #e92d2d;
     border-radius: 50%;
     margin-right: -10px;
-  }
-  .text_filter img:hover {
-    background-color: #f9f9f9;
   }
   .fiter_category {
     position: absolute;

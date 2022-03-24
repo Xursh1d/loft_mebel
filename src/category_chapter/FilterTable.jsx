@@ -1,5 +1,5 @@
 import "./FilterProduct.css";
-import cancel from "../LoftMebelPhoto/cancel.png";
+import {MdOutlineCancelPresentation} from 'react-icons/md'
 import * as InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import ReactLoading from "react-loading";
@@ -43,10 +43,9 @@ export default function FilterTable({
     <div className="update_category">
       <div className="text_filter">
         <h6>Filter</h6>
-        <img
+        <MdOutlineCancelPresentation
+        className="cancel_icon"
           onClick={() => setMobileFilter(!mobileFilter)}
-          src={cancel}
-          alt=""
         />
       </div>
       <div className="price_filter">
@@ -127,7 +126,7 @@ export default function FilterTable({
                   <li
                     key={size.id}
                     className={showMore ? "li_display_block" : "none"}
-                  >
+                  >  
                     <FaCheck
                       className={check.length ? "display_block" : "check_icon"}
                     />
