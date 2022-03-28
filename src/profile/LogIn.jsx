@@ -14,9 +14,12 @@ export default function LogIn() {
   const [checkPassword, setCheckPassword] = useState(false);
   const [postLoader, setPostLoader] = useState(false);
   const [logInStatus, setLogInStatus] = useState();
-
+  const [access, setAccess] = useState();
+  const [refresh, setRefresh] = useState();
+  const data = { access: `${access}`, refresh: `${refresh}`};
   const history = useHistory();
   if (logInStatus) {
+    sessionStorage.setItem("tokens", JSON.stringify(data));
     history.goBack();
   }
   const loginErrors = (err) => {
@@ -53,6 +56,10 @@ export default function LogIn() {
       checkUserName(values.userName, values.password).then((response) => {
         console.log(response.data);
         setLogInStatus(response.data.status);
+        if (response.data.status === true) {
+          setAccess(response.data.data.access);
+          setRefresh(response.data.data.refresh);
+        }
         loginErrors(response.data.detail);
         setPostLoader(false);
       });

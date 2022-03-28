@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { photoUrl } from "../helpers/photo_url_fixer";
 import stock from "../LoftMebelPhoto/stock.svg";
-import heart from "../LoftMebelPhoto/heart.svg";
+import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { useContext } from "react";
 import { StorageContext } from "../context/Context";
 export default function Search({ searchProducts }) {
@@ -67,9 +67,8 @@ export default function Search({ searchProducts }) {
             } = item;
             const sizeProduct = size.slice(0, 1);
             return (
-              <Link
+              <div
                 key={id}
-                to={`/product_card/${slug}`}
                 className="product-hover"
               >
                 <Fade>
@@ -85,14 +84,18 @@ export default function Search({ searchProducts }) {
                       <p>{discount}%</p>
                     </span>
                     <span className="product-heart-icon">
-                      <img src={heart} alt="" />
+                      <IoHeartOutline className="like_outline" />
+                      <IoHeart className="like_icon" />
                     </span>
                     <span className="product-stock-icon">
                       <img src={stock} alt="" />
                     </span>
-                    <div className="product-photo">
+                    <Link
+                      to={`/product_card/${slug}`}
+                      className="product-photo"
+                    >
                       <img src={photoUrl(photo)} alt="" />
-                    </div>
+                    </Link>
                     <h6>{title}</h6>
                     <p>{category.title}</p>
                     <h6 className="price">
@@ -131,28 +134,26 @@ export default function Search({ searchProducts }) {
                         </div>
                       ))}
                     </div>
-                    <Link>
-                      <button
-                        onClick={() =>
-                          addLocalStorage(
-                            size[0],
-                            photo,
-                            title,
-                            color[0],
-                            id,
-                            price,
-                            discount,
-                            discounted_price
-                          )
-                        }
-                        className="add-to-cart"
-                      >
-                        <p>Add to cart</p>
-                      </button>
-                    </Link>
+                    <button
+                      onClick={() =>
+                        addLocalStorage(
+                          size[0],
+                          photo,
+                          title,
+                          color[0],
+                          id,
+                          price,
+                          discount,
+                          discounted_price
+                        )
+                      }
+                      className="add-to-cart"
+                    >
+                      <p>Add to cart</p>
+                    </button>
                   </div>
                 </Fade>
-              </Link>
+              </div>
             );
           })
         ) : (

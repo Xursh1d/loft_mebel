@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { photoUrl } from "../helpers/photo_url_fixer";
 import stock from "../LoftMebelPhoto/stock.svg";
-import heart from "../LoftMebelPhoto/heart.svg";
+import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { useContext } from "react";
 import { StorageContext } from "../context/Context";
 
@@ -68,11 +68,7 @@ export default function LastProducts({ lastProducts }) {
           } = item;
           const sizeProduct = size.slice(0, 1);
           return (
-            <Link
-              key={id}
-              to={`/product_card/${slug}`}
-              className="product-hover"
-            >
+            <div key={id} className="product-hover">
               <Fade>
                 <div className="product">
                   <span
@@ -86,14 +82,15 @@ export default function LastProducts({ lastProducts }) {
                     <p>{discount}%</p>
                   </span>
                   <span className="product-heart-icon">
-                    <img src={heart} alt="" />
-                  </span>
+                      <IoHeartOutline className="like_outline" />
+                      <IoHeart className="like_icon" />
+                    </span>
                   <span className="product-stock-icon">
                     <img src={stock} alt="" />
                   </span>
-                  <div className="product-photo">
+                  <Link to={`/product_card/${slug}`} className="product-photo">
                     <img src={photoUrl(photo)} alt="" />
-                  </div>
+                  </Link>
                   <h6>{title}</h6>
                   <p>{category.title}</p>
                   <h6 className="price">
@@ -132,7 +129,6 @@ export default function LastProducts({ lastProducts }) {
                       </div>
                     ))}
                   </div>
-                  <Link>
                     <button
                       onClick={() =>
                         addLocalStorage(
@@ -150,10 +146,9 @@ export default function LastProducts({ lastProducts }) {
                     >
                       <p>Add to cart</p>
                     </button>
-                  </Link>
                 </div>
               </Fade>
-            </Link>
+            </div>
           );
         })}
       </section>

@@ -1,5 +1,5 @@
 import React from "react";
-import heart from "../LoftMebelPhoto/heart.svg";
+import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import stock from "../LoftMebelPhoto/stock.svg";
 import { photoUrl } from "../helpers/photo_url_fixer";
 import { Link } from "react-router-dom";
@@ -67,11 +67,7 @@ export default function CategoryProducts({ categoryIteam, slug }) {
             } = item;
             const sizeProduct = size.slice(0, 1);
             return (
-              <Link
-                key={id}
-                to={`/product_card/${id}`}
-                className="product-hover filter_category_product"
-              >
+              <div key={id} className="product-hover filter_category_product">
                 <Fade>
                   <div className="product">
                     <span
@@ -85,14 +81,15 @@ export default function CategoryProducts({ categoryIteam, slug }) {
                       <p>{discount}%</p>
                     </span>
                     <span className="product-heart-icon">
-                      <img src={heart} alt="" />
+                      <IoHeartOutline className="like_outline" />
+                      <IoHeart className="like_icon" />
                     </span>
                     <span className="product-stock-icon">
                       <img src={stock} alt="" />
                     </span>
-                    <div className="product-photo">
+                    <Link to={`/product_card/${id}`} className="product-photo">
                       <img src={photoUrl(photo)} alt="" />
-                    </div>
+                    </Link>
                     <h6>{title}</h6>
                     <p>{category.title}</p>
                     <h6 className="price">
@@ -131,28 +128,27 @@ export default function CategoryProducts({ categoryIteam, slug }) {
                         </div>
                       ))}
                     </div>
-                    <Link>
-                      <button
-                        onClick={() =>
-                          addLocalStorage(
-                            size[0],
-                            photo,
-                            title,
-                            color[0],
-                            id,
-                            price,
-                            discount,
-                            discounted_price
-                          )
-                        }
-                        className="add-to-cart"
-                      >
-                        <p>Add to cart</p>
-                      </button>
-                    </Link>
+
+                    <button
+                      onClick={() =>
+                        addLocalStorage(
+                          size[0],
+                          photo,
+                          title,
+                          color[0],
+                          id,
+                          price,
+                          discount,
+                          discounted_price
+                        )
+                      }
+                      className="add-to-cart"
+                    >
+                      <p>Add to cart</p>
+                    </button>
                   </div>
                 </Fade>
-              </Link>
+              </div>
             );
           })}
         </section>

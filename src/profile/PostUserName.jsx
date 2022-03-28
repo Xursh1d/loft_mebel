@@ -73,7 +73,7 @@ export default function PostUserName({ otpStatus, signUpError, userToken }) {
         onSubmit={formik.handleSubmit}
         className={otpStatus ? "sign" : "close_sign_page"}
       >
-        <h1 className="title_enter_code">Create New Account</h1>
+        <h1 className="title_enter_code">Last Step</h1>
         <div className="input_row">
           <div className="input_container up_input fullname">
             <input

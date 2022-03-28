@@ -1233,10 +1233,9 @@
     padding-left: 40px;
   }
   .text_filter .cancel_icon {
-    font-size: 25px;
+    font-size: 22px;
     cursor: pointer;
     color: #e92d2d;
-    border-radius: 50%;
     margin-right: -10px;
   }
   .fiter_category {
@@ -1575,10 +1574,10 @@
     padding-left: 40px;
   }
   .text_filter .cancel_icon {
-    font-size: 25px;
+    font-size: 22px;
     cursor: pointer;
     color: #e92d2d;
-    border-radius: 50%;
+    margin-top: 2px;
     margin-right: -10px;
   }
   .fiter_category {

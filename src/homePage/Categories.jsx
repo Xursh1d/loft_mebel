@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import { photoUrl } from "../helpers/photo_url_fixer";
@@ -8,6 +9,7 @@ import Fade from "react-reveal/Fade";
 import { FaAngleDown } from "react-icons/fa";
 
 export default function Categories({ categories }) {
+  const categorySlug = useParams();
   return (
     <div>
       <ul className="categories">
@@ -16,7 +18,14 @@ export default function Categories({ categories }) {
             return (
               <Fade key={category.id}>
                 <div className="category-title">
-                  <Link className="category" to={`/category/${category.slug}`}>
+                  <Link
+                    to={`/category/${category.slug}`}
+                    className={
+                      categorySlug.slug === category.slug
+                        ? "category active_category"
+                        : "category"
+                    }
+                  >
                     <li>
                       <div className="mobile-category-icon">
                         <img
@@ -44,10 +53,15 @@ export default function Categories({ categories }) {
           } else {
             return (
               <Fade key={category.id}>
-                <div
-                  className="category-title"
-                >
-                  <Link className="category" to={`/category/${category.slug}`}>
+                <div className="category-title">
+                  <Link
+                    className={
+                      categorySlug.slug === category.slug
+                        ? "category active_category"
+                        : "category"
+                    }
+                    to={`/category/${category.slug}`}
+                  >
                     <li key={category.id}>
                       <div className="mobile-category-icon">
                         <img
@@ -66,7 +80,13 @@ export default function Categories({ categories }) {
         })}
         <Fade>
           <Link className="mobile-stock" to="/category/discount">
-            <li className="stock">
+            <li
+              className={
+                categorySlug.slug === "discount"
+                  ? "stock active_category"
+                  : "stock"
+              }
+            >
               <div className="mobile-category-icon">
                 <img className="vector" src={Vector} alt="" />
               </div>
@@ -79,9 +99,16 @@ export default function Categories({ categories }) {
             {categories.map((category) => {
               if (category.children.length > 0) {
                 return (
-                  <div className="etc-item">
+                  <div
+                    key={category.id}
+                    className={
+                      categorySlug.slug === category.slug
+                        ? "etc-item active_category"
+                        : "etc-item"
+                    }
+                  >
                     <Link to={`/category/${category.slug}`}>
-                      <li key={category.id}>
+                      <li>
                         <div className="mobile-category-icon">
                           <img
                             style={{ marginRight: 10 }}
@@ -96,10 +123,8 @@ export default function Categories({ categories }) {
                     <ul className="child-etc-categories">
                       {category.children.map((child) => {
                         return (
-                          <Link to={`/category/${child.slug}`}>
-                            <li className="child-etc-element" key={child.id}>
-                              {child.title}
-                            </li>
+                          <Link key={child.id} to={`/category/${child.slug}`}>
+                            <li className="child-etc-element">{child.title}</li>
                           </Link>
                         );
                       })}
@@ -108,9 +133,16 @@ export default function Categories({ categories }) {
                 );
               } else {
                 return (
-                  <div className="etc-item">
+                  <div
+                    key={category.id}
+                    className={
+                      categorySlug.slug === category.slug
+                        ? "etc-item active_category"
+                        : "etc-item"
+                    }
+                  >
                     <Link to={`/category/${category.slug}`}>
-                      <li key={category.id}>
+                      <li>
                         <div className="mobile-category-icon">
                           <img
                             style={{ marginRight: 10 }}

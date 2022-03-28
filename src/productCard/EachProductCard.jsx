@@ -88,7 +88,7 @@ export default function EachProductCard({
   const handelChangePhoto = (image) => {
     setChildPhoto(image);
   };
-  const { category, title, color, size, description, price, characteristics } =
+  const { id,category, title, color, size, description, price, characteristics } =
     productCard;
 
   let filterCategories = "";
@@ -106,7 +106,7 @@ export default function EachProductCard({
   });
 
   return (
-    <div className="product-card">
+    <div key={id} className="product-card">
       <p className="product-adress">Home / {filterCategories}</p>
       <div className="product-card-row1">
         <div className="product-photos">
