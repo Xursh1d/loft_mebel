@@ -1,0 +1,35 @@
+@media screen and (min-width: 1250px) {
+  .wishlist_table {
+    width: 250px;
+    height: 100%;
+    position: absolute;
+    z-index: 101;
+    display: none;
+    right: -250px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    transition: right 0.5s ease-in-out;
+    top: 0;
+    background-color: #fff;
+  }
+  .open_wishlist {
+    right: 0% !important;
+  }
+  .wishlist_table h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: Poppins;
+    font-weight: 500;
+    font-style: normal;
+    text-align: center;
+    height: 38px;
+    background: #245462;
+    line-height: 38px;
+    color: #fff;
+  }
+  .wishlist_table .wishlist_products {
+    width: 100%;
+    list-style: none;
+    margin: 20px 15px;
+  }
+}

@@ -14,9 +14,7 @@ export default function PostUserName({ otpStatus, signUpError, userToken }) {
   const [selectedOption, setSelectedOption] = useState("");
   const [checkPassword, setCheckPassword] = useState(false);
   const [dataStatus, setDataStatus] = useState(false);
-  const [photo, setPhoto] = useState();
-
-  console.log(photo);
+  const [photo,setPhoto] = useState();
   const history = useHistory();
   const options = [
     { value: "male", label: "Male" },

@@ -16,7 +16,9 @@ import {
   SliderContext,
   TopProductContext,
   ChangeSearchContext,
+  WishlistContext,
   StorageContext,
+  TokensContext,
 } from "./context/Context";
 import {
   getCategories,
@@ -27,9 +29,12 @@ import {
 import SignUp from "./profile/SignUp";
 import SignIn from "./profile/SignIn";
 import MyOrders from "./my_orders/MyOrders";
+import jwt_decode from "jwt-decode";
+import { isJwtExpired } from "jwt-check-expiration";
 
 function App() {
   const [menuBar, setMenuBar] = useState(false);
+  const [wishlist, setWishlist] = useState(false);
   const [slider, setSlider] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeSlide, setActiveSlide] = useState(0);
@@ -39,7 +44,16 @@ function App() {
   const [cartStorage, setCartStorage] = useLocalStrage("product", []);
   const [changeSearch, setChangeSearch] = useState([]);
   const [search, setSearch] = useState();
-  
+  const [refreshToken, setRefreshToken] = useState(true);
+  let getToken = localStorage.getItem("refresh");
+  useEffect(() => {
+    if (getToken && getToken !== null) {
+      setRefreshToken(isJwtExpired(localStorage.getItem("refresh")));
+    } else {
+      setRefreshToken(true);
+    }
+  });
+
   function useLocalStrage(key, oldValue) {
     const [storedValue, setStoredValue] = useState(() => {
       const getValue = localStorage.getItem(key);
@@ -102,7 +116,6 @@ function App() {
   const getCategoryId = (slug) => {
     setCatgeoryId(slug);
   };
-
   return (
     <div className="app">
       <Router>
@@ -114,42 +127,48 @@ function App() {
             value={{ categories, getCategoryId, loading, setLoading }}
           >
             <MenuContext.Provider value={[menuBar, setMenuBar]}>
-              <SliderContext.Provider value={{ slider }}>
-                <ActiveSlideContext.Provider
-                  value={[activeSlide, setActiveSlide]}
-                >
-                  <TopProductContext.Provider
-                    value={{ topProduct, categoryId }}
+              <WishlistContext.Provider value={{ wishlist, setWishlist }}>
+                <SliderContext.Provider value={{ slider }}>
+                  <ActiveSlideContext.Provider
+                    value={[activeSlide, setActiveSlide]}
                   >
-                    <ChangeSearchContext.Provider
-                      value={{
-                        search,
-                        setSearch,
-                        setChangeSearch,
-                      }}
+                    <TopProductContext.Provider
+                      value={{ topProduct, categoryId }}
                     >
-                      <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route
-                          path="/product_card/:slug"
-                          component={ProductCard}
-                        />
-                        <Route path="/wishlist" component={Wishlist} />
-                        <Route path="/contact" component={Contact} />
-                        <Route path="/basket" component={Basket} />
-                        <Route
-                          path="/category/:slug"
-                          component={CategoryItems}
-                        />
-                        <Route path="/search/:slug" component={Term} />
-                        <Route path="/user/sign_in" component={SignIn} />
-                        <Route path="/user/sign_up" component={SignUp} />
-                        <Route path="/my_orders" component={MyOrders} />
-                      </Switch>
-                    </ChangeSearchContext.Provider>
-                  </TopProductContext.Provider>
-                </ActiveSlideContext.Provider>
-              </SliderContext.Provider>
+                      <ChangeSearchContext.Provider
+                        value={{
+                          search,
+                          setSearch,
+                          setChangeSearch,
+                        }}
+                      >
+                        <TokensContext.Provider
+                          value={[refreshToken, setRefreshToken]}
+                        >
+                          <Switch>
+                            <Route path="/" exact component={Home} />
+                            <Route
+                              path="/product_card/:slug"
+                              component={ProductCard}
+                            />
+                            <Route path="/wishlist" component={Wishlist} />
+                            <Route path="/contact" component={Contact} />
+                            <Route path="/basket" component={Basket} />
+                            <Route
+                              path="/category/:slug"
+                              component={CategoryItems}
+                            />
+                            <Route path="/search/:slug" component={Term} />
+                            <Route path="/user/sign_in" component={SignIn} />
+                            <Route path="/user/sign_up" component={SignUp} />
+                            <Route path="/my_orders" component={MyOrders} />
+                          </Switch>
+                        </TokensContext.Provider>
+                      </ChangeSearchContext.Provider>
+                    </TopProductContext.Provider>
+                  </ActiveSlideContext.Provider>
+                </SliderContext.Provider>
+              </WishlistContext.Provider>
             </MenuContext.Provider>
           </CategoriesContext.Provider>
         </StorageContext.Provider>

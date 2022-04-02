@@ -17,7 +17,6 @@ import { useState, useEffect } from "react";
 import { productCallForId } from "./api/UrlApi";
 import { useParams } from "react-router-dom";
 import ReactLoading from "react-loading";
-
 export default function ProductCard() {
   const { slug } = useParams();
   const { setChangeSearch, setSearch, search} =
@@ -28,7 +27,7 @@ export default function ProductCard() {
   const [productCard, setProductCard] = useState([]);
   const [loading, setLoading] = useState(true);
   const [childPhoto, setChildPhoto] = useState();
-
+  
   useEffect(() => {
     setLoading(true);
     productCallForId(slug).then((productCall) => {

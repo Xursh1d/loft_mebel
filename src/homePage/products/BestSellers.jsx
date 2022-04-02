@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Home.css";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import stock from "../../LoftMebelPhoto/stock.svg";
@@ -7,9 +7,12 @@ import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { useContext } from "react";
 import { StorageContext } from "../../context/Context";
+import { likeProduct, removeLikedPoduct } from "../../api/UrlApi";
 
 export default function BestSellers({ topProduct, categoryId }) {
   const { cartStorage, setCartStorage } = useContext(StorageContext);
+  const [likedProduct, setLikedProduct] = useState([]);
+  console.log(likedProduct);
   const addLocalStorage = (
     size,
     photo,
@@ -49,6 +52,21 @@ export default function BestSellers({ topProduct, categoryId }) {
       setCartStorage([...cartStorage, data]);
     }
   };
+  const addWishlist = (id) => {
+    const find = likedProduct.find((item) => item.product === id);
+    const updata = likedProduct.filter((item) => item.product !== id);
+    if (find) {
+      removeLikedPoduct(find.id).then((res) => {
+        if (res === true) {
+          setLikedProduct(updata);
+        }
+      });
+    } else {
+      likeProduct(id).then((res) => {
+        setLikedProduct([...likedProduct, res.data]);
+      });
+    }
+  };
   return (
     <div className="best-sellers">
       {categoryId ? <h5>{categoryId}</h5> : <h5>Best-Sellers</h5>}
@@ -65,7 +83,9 @@ export default function BestSellers({ topProduct, categoryId }) {
             color,
             discount,
             discounted_price,
+            wishlist,
           } = item;
+          // console.log(wishlist);
           const sizeProduct = size.slice(0, 1);
           return (
             <div key={id} className="product-hover">
@@ -81,8 +101,11 @@ export default function BestSellers({ topProduct, categoryId }) {
                     <img src={stock} alt="" />
                     <p>{discount}%</p>
                   </span>
-                  <span className="product-heart-icon">
-                    <IoHeartOutline className="like_outline" />
+                  <span
+                    className="product-heart-icon"
+                    onClick={() => addWishlist(id)}
+                  >
+                    <IoHeartOutline className={"like_outline"} />
                     <IoHeart className="like_icon" />
                   </span>
                   <span className="product-stock-icon">

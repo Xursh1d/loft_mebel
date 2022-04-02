@@ -29,7 +29,6 @@ export default function Basket() {
       />
       <Menu />
       <LogoSearch
-        active_contact_page="active_page"
         setMenuBar={setMenuBar}
         search={search}
         setChangeSearch={setChangeSearch}

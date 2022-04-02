@@ -4,6 +4,7 @@ import Menu from "./homePage/Menu";
 import LogoSearch from "./homePage/LogoSearch";
 import Categories from "./homePage/Categories";
 import MenuBar from "./homePage/menuComponents/MenuBar";
+import WishlistProducts from "./wishlist/WishlistProducts";
 import {
   CategoriesContext,
   MenuContext,
@@ -11,6 +12,8 @@ import {
   ActiveSlideContext,
   TopProductContext,
   ChangeSearchContext,
+  WishlistContext,
+  TokensContext
 } from "./context/Context";
 import { useContext} from "react";
 import Input from "./homePage/Input";
@@ -22,14 +25,20 @@ import BestSellers from "./homePage/products/BestSellers";
 export default function Home() {
   const { categories, getCategoryId, loading } = useContext(CategoriesContext);
   const { slider } = useContext(SliderContext);
+  const {wishlist,setWishlist}=useContext(WishlistContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
   const [activeSlide, setActiveSlide] = useContext(ActiveSlideContext);
   const { topProduct, categoryId } = useContext(TopProductContext);
-  const { setSearch, setChangeSearch, setSearchKeyPress, search } =
+  const { setSearch, setChangeSearch ,search } =
     useContext(ChangeSearchContext);
   useEffect(() => {
     setSearch([]);
   }, []);
+  const handelCloseMenu=()=>{
+    setMenuBar(false)
+    setWishlist(false)
+  }
+
   document.title = "Loft Mebel";
   return loading ? (
     <div className="loader">
@@ -43,13 +52,14 @@ export default function Home() {
       />
     </div>
   ) : (
-    <div onClick={() => setMenuBar(false)}>
+    <div onClick={() => handelCloseMenu()}>
       <MenuBar
         categories={categories}
         menuBar={menuBar}
         setMenuBar={setMenuBar}
         getCategoryId={getCategoryId}
       />
+      <WishlistProducts wishlist={wishlist}/>
       <Menu />
       <LogoSearch
         setMenuBar={setMenuBar}

@@ -13,18 +13,22 @@ import Footer from "../homePage/Footer";
 import Categories from "../homePage/Categories";
 import Input from "../homePage/Input";
 import ReactLoading from "react-loading";
-import '../homePage/Home.css'
+import "../homePage/Home.css";
 import { useContext } from "react";
+import { Redirect } from "react-router";
 
 export default function SignIn() {
-  const { categories,loading } = useContext(CategoriesContext);
+  const { categories, loading } = useContext(CategoriesContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
   const { setSearch, setChangeSearch, search } =
     useContext(ChangeSearchContext);
   useEffect(() => {
     setSearch([]);
   }, []);
-
+  const getRefresh = localStorage.getItem("refresh");
+  if (getRefresh) {
+    return <Redirect to="/" />;
+  }
   return loading ? (
     <div className="loader">
       <h6>Loading</h6>

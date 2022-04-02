@@ -8,4 +8,6 @@ export const TopProductContext =createContext(null);
 export const ItemsCategory =createContext(null);
 export const ProductCardContext =createContext(null);
 export const StorageContext =createContext(null);
-export const ChangeSearchContext=createContext(null)
+export const ChangeSearchContext=createContext(null);
+export const WishlistContext=createContext(null);
+export const TokensContext=createContext(null)

@@ -12,8 +12,7 @@ export default function LogoSearch({
   active_wishlist_page,
   active_contact_page,
   setChangeSearch,
-  search,
-  setSearchKeyPress,
+  search
 }) {
   return (
     <div className="logoSearch">
