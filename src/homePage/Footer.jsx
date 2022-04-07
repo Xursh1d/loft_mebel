@@ -5,7 +5,7 @@ import inst from "../LoftMebelPhoto/inst.svg";
 import mail from "../LoftMebelPhoto/mail.svg";
 import logo from "../LoftMebelPhoto/logo.svg";
 
-export default function Footer({ categories}) {
+export default function Footer({ categories }) {
   return (
     <div className="footer">
       <div className="footer-navigation-LM">
@@ -55,18 +55,19 @@ export default function Footer({ categories}) {
           </ul>
         </div>
         <div className="footer-contact-item2">
-          <Link to="/tel">
+          <a href="tel:+998911705909">
             <img src={phone} alt="" />
-            <span>8 (964) 89 99 119</span>
-          </Link>
-          <Link to="/">
+            <span>+998 91 170 59 09</span>
+          </a>
+          <a href="https://instagram.com/frontend15">
             <img src={inst} alt="" />
             <span>INSTAGRAM</span>
-          </Link>
-          <Link to="/tel">
+          </a>
+
+          <a href="mailto:xurshidforjob@gmail.com">
             <img src={mail} alt="" />
-            <span>mebel_loft_anapa@mail.ru</span>
-          </Link>
+            <span>xurshidforjob@gmail.com</span>
+          </a>
         </div>
       </div>
     </div>

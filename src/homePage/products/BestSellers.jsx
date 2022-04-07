@@ -6,13 +6,11 @@ import { photoUrl } from "./../../helpers/photo_url_fixer";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { useContext } from "react";
-import { StorageContext } from "../../context/Context";
-import { likeProduct, removeLikedPoduct } from "../../api/UrlApi";
+import { StorageContext, WishlistContext } from "../../context/Context";
 
 export default function BestSellers({ topProduct, categoryId }) {
   const { cartStorage, setCartStorage } = useContext(StorageContext);
-  const [likedProduct, setLikedProduct] = useState([]);
-  console.log(likedProduct);
+  const { likedProduct, setLikedProduct } = useContext(WishlistContext);
   const addLocalStorage = (
     size,
     photo,
@@ -52,19 +50,13 @@ export default function BestSellers({ topProduct, categoryId }) {
       setCartStorage([...cartStorage, data]);
     }
   };
-  const addWishlist = (id) => {
-    const find = likedProduct.find((item) => item.product === id);
-    const updata = likedProduct.filter((item) => item.product !== id);
-    if (find) {
-      removeLikedPoduct(find.id).then((res) => {
-        if (res === true) {
-          setLikedProduct(updata);
-        }
-      });
+  const handelWishlistStorage = (item) => {
+    const findID = likedProduct.find((i) => i.id === item.id);
+    const filterItem = likedProduct.filter((i) => i.id !== item.id);
+    if (findID) {
+      setLikedProduct(filterItem);
     } else {
-      likeProduct(id).then((res) => {
-        setLikedProduct([...likedProduct, res.data]);
-      });
+      setLikedProduct([...likedProduct, item]);
     }
   };
   return (
@@ -83,9 +75,8 @@ export default function BestSellers({ topProduct, categoryId }) {
             color,
             discount,
             discounted_price,
-            wishlist,
           } = item;
-          // console.log(wishlist);
+          const findID = likedProduct.find((i) => i.id == id);
           const sizeProduct = size.slice(0, 1);
           return (
             <div key={id} className="product-hover">
@@ -103,10 +94,12 @@ export default function BestSellers({ topProduct, categoryId }) {
                   </span>
                   <span
                     className="product-heart-icon"
-                    onClick={() => addWishlist(id)}
+                    onClick={() => handelWishlistStorage(item)}
                   >
-                    <IoHeartOutline className={"like_outline"} />
-                    <IoHeart className="like_icon" />
+                    <IoHeartOutline className="like_outline" />
+                    <IoHeart
+                      className={findID ? "like_icon open_heart" : "like_icon"}
+                    />
                   </span>
                   <span className="product-stock-icon">
                     <img src={stock} alt="" />

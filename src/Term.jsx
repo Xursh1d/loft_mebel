@@ -8,6 +8,7 @@ import {
   CategoriesContext,
   MenuContext,
   ChangeSearchContext,
+  WishlistContext,
 } from "./context/Context";
 import Footer from "./homePage/Footer";
 import Categories from "./homePage/Categories";
@@ -15,14 +16,20 @@ import Input from "./homePage/Input";
 import ReactLoading from "react-loading";
 import { useContext } from "react";
 import { getSearchProduct } from "./api/UrlApi";
+import WishlistProducts from "./wishlist/WishlistProducts";
 
 export default function Term() {
   const { slug } = useParams();
   const { categories, loading, setLoading } = useContext(CategoriesContext);
-  const { setSearch, search, setChangeSearch} =
+  const { setSearch, search, setChangeSearch } =
     useContext(ChangeSearchContext);
+  const { setWishlist } = useContext(WishlistContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
   const [searchProducts, setSearchProducts] = useState([]);
+  const handleCloseMenu = () => {
+    setMenuBar(false);
+    setWishlist(false);
+  };
   useEffect(() => {
     setLoading(true);
     getSearchProduct(slug).then((getSearchItem) => {
@@ -43,20 +50,21 @@ export default function Term() {
       />
     </div>
   ) : (
-    <div onClick={() => setMenuBar(false)}>
+    <div onClick={() => handleCloseMenu()}>
       <MenuBar
         categories={categories}
         menuBar={menuBar}
         setMenuBar={setMenuBar}
       />
       <Menu />
+      <WishlistProducts />
       <LogoSearch
         setMenuBar={setMenuBar}
         search={search}
         setChangeSearch={setChangeSearch}
       />
       <Input
-      className="mobile_term"
+        className="mobile_term"
         setChangeSearch={setChangeSearch}
         search={search}
         style={"mobile-input"}

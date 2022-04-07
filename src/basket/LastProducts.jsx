@@ -6,10 +6,11 @@ import { photoUrl } from "../helpers/photo_url_fixer";
 import stock from "../LoftMebelPhoto/stock.svg";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { useContext } from "react";
-import { StorageContext } from "../context/Context";
+import { StorageContext, WishlistContext } from "../context/Context";
 
 export default function LastProducts({ lastProducts }) {
   const { cartStorage, setCartStorage } = useContext(StorageContext);
+  const { likedProduct, setLikedProduct } = useContext(WishlistContext);
   const addLocalStorage = (
     size,
     photo,
@@ -49,6 +50,15 @@ export default function LastProducts({ lastProducts }) {
       setCartStorage([...cartStorage, data]);
     }
   };
+  const handelWishlistStorage = (item) => {
+    const findID = likedProduct.find((i) => i.id === item.id);
+    const filterItem = likedProduct.filter((i) => i.id !== item.id);
+    if (findID) {
+      setLikedProduct(filterItem);
+    } else {
+      setLikedProduct([...likedProduct, item]);
+    }
+  };
   return (
     <div className="best-sellers">
       <h5>May like you</h5>
@@ -67,6 +77,7 @@ export default function LastProducts({ lastProducts }) {
             discounted_price,
           } = item;
           const sizeProduct = size.slice(0, 1);
+          const findID = likedProduct.find((i) => i.id == id);
           return (
             <div key={id} className="product-hover">
               <Fade>
@@ -81,10 +92,15 @@ export default function LastProducts({ lastProducts }) {
                     <img src={stock} alt="" />
                     <p>{discount}%</p>
                   </span>
-                  <span className="product-heart-icon">
-                      <IoHeartOutline className="like_outline" />
-                      <IoHeart className="like_icon" />
-                    </span>
+                  <span
+                    onClick={() => handelWishlistStorage(item)}
+                    className="product-heart-icon"
+                  >
+                    <IoHeartOutline className="like_outline" />
+                    <IoHeart
+                      className={findID ? "like_icon open_heart" : "like_icon"}
+                    />
+                  </span>
                   <span className="product-stock-icon">
                     <img src={stock} alt="" />
                   </span>
@@ -129,23 +145,23 @@ export default function LastProducts({ lastProducts }) {
                       </div>
                     ))}
                   </div>
-                    <button
-                      onClick={() =>
-                        addLocalStorage(
-                          size[0],
-                          photo,
-                          title,
-                          color[0],
-                          id,
-                          price,
-                          discount,
-                          discounted_price
-                        )
-                      }
-                      className="add-to-cart"
-                    >
-                      <p>Add to cart</p>
-                    </button>
+                  <button
+                    onClick={() =>
+                      addLocalStorage(
+                        size[0],
+                        photo,
+                        title,
+                        color[0],
+                        id,
+                        price,
+                        discount,
+                        discounted_price
+                      )
+                    }
+                    className="add-to-cart"
+                  >
+                    <p>Add to cart</p>
+                  </button>
                 </div>
               </Fade>
             </div>

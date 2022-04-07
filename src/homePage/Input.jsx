@@ -9,10 +9,10 @@ export default function Input({
   setChangeSearch,
   search,
 }) {
-  const [target,setTarget]=useState()
+  const [target, setTarget] = useState();
   const history = useHistory();
   const keyPress = (e) => {
-    setTarget(e.target.value)
+    setTarget(e.target.value);
     if (e.keyCode == 13) {
       history.push(`/search/${e.target.value}`);
     }
@@ -20,9 +20,9 @@ export default function Input({
   const handelChange = (e) => {
     setChangeSearch(e.target.value);
   };
-  const handelSearch=()=>{
+  const handelSearch = () => {
     history.push(`/search/${target}`);
-  }
+  };
   return (
     <div className="input_item">
       <img

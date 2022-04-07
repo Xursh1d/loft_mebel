@@ -3,7 +3,7 @@ const baseURL = "https://www.uktamjon.uz/api";
 
 export const axiosInstance = axios.create({
   baseURL,
-  timeout: 100000,
+  // timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },

@@ -42,6 +42,7 @@ function App() {
   const [categoryId, setCatgeoryId] = useState();
   const [loading, setLoading] = useState(true);
   const [cartStorage, setCartStorage] = useLocalStrage("product", []);
+  const [likedProduct, setLikedProduct] = useLocalStrage("wishlist", []);
   const [changeSearch, setChangeSearch] = useState([]);
   const [search, setSearch] = useState();
   const [refreshToken, setRefreshToken] = useState(true);
@@ -127,7 +128,9 @@ function App() {
             value={{ categories, getCategoryId, loading, setLoading }}
           >
             <MenuContext.Provider value={[menuBar, setMenuBar]}>
-              <WishlistContext.Provider value={{ wishlist, setWishlist }}>
+              <WishlistContext.Provider
+                value={{ wishlist, setWishlist, likedProduct, setLikedProduct }}
+              >
                 <SliderContext.Provider value={{ slider }}>
                   <ActiveSlideContext.Provider
                     value={[activeSlide, setActiveSlide]}

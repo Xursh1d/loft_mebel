@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaUser, FaIndent, FaSignOutAlt } from "react-icons/fa";
 import MenuColumn2 from "./menuComponents/MenuColumn2";
 import phoneDark from "../LoftMebelPhoto/phone.svg";
 import deliveryDark from "../LoftMebelPhoto/delivery-icon.svg";
@@ -18,13 +19,11 @@ import { WishlistContext, TokensContext } from "../context/Context";
 export default function LogoSearchIcons({
   active_basket_page,
   active_contact_page,
-  active_wishlist_page,
 }) {
   const [refreshToken, setRefreshToken] = useContext(TokensContext);
   const { cartStorage } = useContext(StorageContext);
-  const { setWishlist } = useContext(WishlistContext);
+  const { setWishlist, wishlist, likedProduct } = useContext(WishlistContext);
   const [activeProfile, setActiveProfile] = useState(false);
-  // console.log(refreshToken);
   const removeStorage = () => {
     setRefreshToken(true);
     localStorage.removeItem("refresh", "");
@@ -38,13 +37,16 @@ export default function LogoSearchIcons({
     <div className="logoSearchIcons">
       <MenuColumn2 phone={phoneDark} delivery={deliveryDark} />
       <div onClick={(e) => changeWishlist(e)} className="cart_link_heart">
+        <span className="wishlist_items_count">{likedProduct.length}</span>
         <IoHeartOutline
-          className={`heart_icon_outline ${active_wishlist_page}`}
+          className={
+            wishlist ? `heart_icon_outline active_page` : `heart_icon_outline`
+          }
         />
         <IoHeart className="heart_icon" />
       </div>
       <Link to="/basket" className="cart_link_basket">
-        <span>{cartStorage.length}</span>
+        <span className="cart_items_count">{cartStorage.length}</span>
         <IoCartOutline className={`cart_icon_outline ${active_basket_page}`} />
         <IoCart className="cart_icon" />
       </Link>
@@ -73,13 +75,20 @@ export default function LogoSearchIcons({
               !activeProfile ? "contact_list" : "contact_list open_menu_profile"
             }
           >
-            <li className="contact_item">Profile</li>
-            <li className="contact_item">My orders</li>
+            <li className="contact_item">
+              <FaUser className="user_icon" />
+              <p>Profile</p>
+            </li>
+            <li className="contact_item">
+              <FaIndent className="user_icon" />
+              <p>My orders</p>
+            </li>
             <li
               onClick={() => removeStorage()}
               className="contact_item log_out"
             >
-              Log out
+              <FaSignOutAlt className="user_icon" />
+              <p>Log out</p>
             </li>
           </ul>
         </div>

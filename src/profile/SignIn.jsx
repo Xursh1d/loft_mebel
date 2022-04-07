@@ -8,20 +8,26 @@ import {
   CategoriesContext,
   ChangeSearchContext,
   MenuContext,
+  WishlistContext,
 } from "../context/Context";
-import Footer from "../homePage/Footer";
 import Categories from "../homePage/Categories";
 import Input from "../homePage/Input";
 import ReactLoading from "react-loading";
 import "../homePage/Home.css";
 import { useContext } from "react";
 import { Redirect } from "react-router";
+import WishlistProducts from "../wishlist/WishlistProducts";
 
 export default function SignIn() {
   const { categories, loading } = useContext(CategoriesContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
+  const { setWishlist } = useContext(WishlistContext);
   const { setSearch, setChangeSearch, search } =
     useContext(ChangeSearchContext);
+  const handleCloseMenu = () => {
+    setMenuBar(false);
+    setWishlist(false);
+  };
   useEffect(() => {
     setSearch([]);
   }, []);
@@ -41,13 +47,14 @@ export default function SignIn() {
       />
     </div>
   ) : (
-    <div onClick={() => setMenuBar(false)}>
+    <div onClick={() => handleCloseMenu()}>
       <MenuBar
         categories={categories}
         menuBar={menuBar}
         setMenuBar={setMenuBar}
       />
       <Menu />
+      <WishlistProducts />
       <LogoSearch
         active_contact_page="active_page"
         search={search}

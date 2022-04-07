@@ -6,6 +6,7 @@ import {
   MenuContext,
   TopProductContext,
   ChangeSearchContext,
+  WishlistContext,
 } from "./context/Context";
 import Footer from "./homePage/Footer";
 import Input from "./homePage/Input";
@@ -17,17 +18,23 @@ import { useState, useEffect } from "react";
 import { productCallForId } from "./api/UrlApi";
 import { useParams } from "react-router-dom";
 import ReactLoading from "react-loading";
+import WishlistProducts from "./wishlist/WishlistProducts";
 export default function ProductCard() {
   const { slug } = useParams();
-  const { setChangeSearch, setSearch, search} =
+  const { setChangeSearch, setSearch, search } =
     useContext(ChangeSearchContext);
+  const { setWishlist } = useContext(WishlistContext);
   const { categories } = useContext(CategoriesContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
   const { topProduct, categoryId } = useContext(TopProductContext);
   const [productCard, setProductCard] = useState([]);
   const [loading, setLoading] = useState(true);
   const [childPhoto, setChildPhoto] = useState();
-  
+
+  const handleCloseMenu = () => {
+    setMenuBar(false);
+    setWishlist(false);
+  };
   useEffect(() => {
     setLoading(true);
     productCallForId(slug).then((productCall) => {
@@ -53,13 +60,14 @@ export default function ProductCard() {
       />
     </div>
   ) : (
-    <div onClick={() => setMenuBar(false)}>
+    <div onClick={() => handleCloseMenu()}>
       <MenuBar
         categories={categories}
         menuBar={menuBar}
         setMenuBar={setMenuBar}
       />
       <Menu />
+      <WishlistProducts />
       <LogoSearch
         search={search}
         setMenuBar={setMenuBar}

@@ -4,7 +4,6 @@ import Menu from "./homePage/Menu";
 import LogoSearch from "./homePage/LogoSearch";
 import Categories from "./homePage/Categories";
 import MenuBar from "./homePage/menuComponents/MenuBar";
-import WishlistProducts from "./wishlist/WishlistProducts";
 import {
   CategoriesContext,
   MenuContext,
@@ -13,31 +12,31 @@ import {
   TopProductContext,
   ChangeSearchContext,
   WishlistContext,
-  TokensContext
 } from "./context/Context";
-import { useContext} from "react";
+import { useContext } from "react";
 import Input from "./homePage/Input";
 import Slider from "./homePage/silder/Slider";
 import Footer from "./homePage/Footer";
 import ReactLoading from "react-loading";
 import BestSellers from "./homePage/products/BestSellers";
+import WishlistProducts from "./wishlist/WishlistProducts";
 
 export default function Home() {
   const { categories, getCategoryId, loading } = useContext(CategoriesContext);
   const { slider } = useContext(SliderContext);
-  const {wishlist,setWishlist}=useContext(WishlistContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
   const [activeSlide, setActiveSlide] = useContext(ActiveSlideContext);
   const { topProduct, categoryId } = useContext(TopProductContext);
-  const { setSearch, setChangeSearch ,search } =
+  const { setWishlist } = useContext(WishlistContext);
+  const { setSearch, setChangeSearch, search } =
     useContext(ChangeSearchContext);
   useEffect(() => {
     setSearch([]);
   }, []);
-  const handelCloseMenu=()=>{
-    setMenuBar(false)
-    setWishlist(false)
-  }
+  const handleCloseMenu = () => {
+    setMenuBar(false);
+    setWishlist(false);
+  };
 
   document.title = "Loft Mebel";
   return loading ? (
@@ -52,15 +51,15 @@ export default function Home() {
       />
     </div>
   ) : (
-    <div onClick={() => handelCloseMenu()}>
+    <div onClick={() => handleCloseMenu()}>
       <MenuBar
         categories={categories}
         menuBar={menuBar}
         setMenuBar={setMenuBar}
         getCategoryId={getCategoryId}
       />
-      <WishlistProducts wishlist={wishlist}/>
       <Menu />
+      <WishlistProducts />
       <LogoSearch
         setMenuBar={setMenuBar}
         search={search}

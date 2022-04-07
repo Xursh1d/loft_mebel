@@ -5,8 +5,9 @@ import { photoUrl } from "../helpers/photo_url_fixer";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { useContext } from "react";
-import { StorageContext } from "../context/Context";
+import { StorageContext, WishlistContext } from "../context/Context";
 export default function CategoryProducts({ categoryIteam, slug }) {
+  const { likedProduct, setLikedProduct } = useContext(WishlistContext);
   const { cartStorage, setCartStorage } = useContext(StorageContext);
   const addLocalStorage = (
     size,
@@ -47,6 +48,15 @@ export default function CategoryProducts({ categoryIteam, slug }) {
       setCartStorage([...cartStorage, data]);
     }
   };
+  const handelWishlistStorage = (item) => {
+    const findID = likedProduct.find((i) => i.id === item.id);
+    const filterItem = likedProduct.filter((i) => i.id !== item.id);
+    if (findID) {
+      setLikedProduct(filterItem);
+    } else {
+      setLikedProduct([...likedProduct, item]);
+    }
+  };
   return (
     <>
       {categoryIteam.length ? (
@@ -65,6 +75,7 @@ export default function CategoryProducts({ categoryIteam, slug }) {
               discount,
               discounted_price,
             } = item;
+            const findID = likedProduct.find((i) => i.id == id);
             const sizeProduct = size.slice(0, 1);
             return (
               <div key={id} className="product-hover filter_category_product">
@@ -80,9 +91,16 @@ export default function CategoryProducts({ categoryIteam, slug }) {
                       <img src={stock} alt="" />
                       <p>{discount}%</p>
                     </span>
-                    <span className="product-heart-icon">
+                    <span
+                      onClick={() => handelWishlistStorage(item)}
+                      className="product-heart-icon"
+                    >
                       <IoHeartOutline className="like_outline" />
-                      <IoHeart className="like_icon" />
+                      <IoHeart
+                        className={
+                          findID ? "like_icon open_heart" : "like_icon"
+                        }
+                      />
                     </span>
                     <span className="product-stock-icon">
                       <img src={stock} alt="" />

@@ -1,5 +1,4 @@
 import { axiosInstance } from "./AxiosInstance";
-import { likeAxiosInstance } from "./UrlAxiosInstance";
 
 export const getCategories = async () => {
   const categorie = await axiosInstance.get("/categories/");
@@ -8,7 +7,6 @@ export const getCategories = async () => {
 
 export const productCallForId = async (slug) => {
   const productCall = await axiosInstance.get(`/products/${slug}/`);
-
   return productCall;
 };
 export const getSlider = async () => {
@@ -88,16 +86,16 @@ export const checkUserName = async (username, password) => {
   });
   return response;
 };
-export const likeProduct = async (_id) => {
-  const response = await likeAxiosInstance.post("/wishlist/", { product: _id });
-  if (response.status === 200) {
-    return response.data;
-  }
-};
-export const removeLikedPoduct = async (id) => {
-  const response = await likeAxiosInstance.delete(`/wishlist/${id}/`);
-  console.log(response.status);
-  if (response.status === 204) {
-    return true;
-  } else return false;
-};
+// export const likeProduct = async (_id) => {
+//   const response = await likeAxiosInstance.post("/wishlist/", { product: _id });
+//   if (response.status === 200) {
+//     return response.data;
+//   }
+// };
+// export const removeLikedPoduct = async (id) => {
+//   const response = await likeAxiosInstance.delete(`/wishlist/${id}/`);
+//   console.log(response.status);
+//   if (response.status === 204) {
+//     return true;
+//   } else return false;
+// };

@@ -6,6 +6,7 @@ import {
   CategoriesContext,
   MenuContext,
   ChangeSearchContext,
+  WishlistContext,
 } from "./context/Context";
 import Footer from "./homePage/Footer";
 import Categories from "./homePage/Categories";
@@ -15,10 +16,12 @@ import { useContext } from "react";
 import ShopProduct from "./basket/ShopProduct";
 import LastProducts from "./basket/LastProducts";
 import { getLatestProducts } from "./api/UrlApi";
+import WishlistProducts from "./wishlist/WishlistProducts";
 
 export default function Basket() {
   const { categories, loading, setLoading } = useContext(CategoriesContext);
-  const { setSearch, search, setChangeSearch} =
+  const { setWishlist } = useContext(WishlistContext);
+  const { setSearch, search, setChangeSearch } =
     useContext(ChangeSearchContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
   const [lastProducts, setLastProducts] = useState([]);
@@ -30,6 +33,10 @@ export default function Basket() {
       setSearch([]);
     });
   }, []);
+  const handleCloseMenu = () => {
+    setMenuBar(false);
+    setWishlist(false);
+  };
   return loading ? (
     <div className="loader">
       <h6>Loading</h6>
@@ -42,13 +49,14 @@ export default function Basket() {
       />
     </div>
   ) : (
-    <div onClick={() => setMenuBar(false)}>
+    <div onClick={() => handleCloseMenu()}>
       <MenuBar
         categories={categories}
         menuBar={menuBar}
         setMenuBar={setMenuBar}
       />
       <Menu />
+      <WishlistProducts />
       <LogoSearch
         active_basket_page="active_page"
         setMenuBar={setMenuBar}

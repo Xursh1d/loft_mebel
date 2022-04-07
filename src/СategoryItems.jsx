@@ -5,6 +5,7 @@ import {
   CategoriesContext,
   MenuContext,
   ChangeSearchContext,
+  WishlistContext,
 } from "./context/Context";
 import Footer from "./homePage/Footer";
 import Input from "./homePage/Input";
@@ -21,6 +22,7 @@ import {
 import { useParams } from "react-router-dom";
 import ReactLoading from "react-loading";
 import TopCategories from "./top_categories/TopCategories";
+import WishlistProducts from "./wishlist/WishlistProducts";
 
 export const ColorFilter = createContext();
 export const SizeFilter = createContext();
@@ -31,9 +33,10 @@ export default function СategoryItems() {
   const [loading, setLoading] = useState(true);
   const [filterLoading, setFilterLoading] = useState(true);
   const { categories } = useContext(CategoriesContext);
-  const { setChangeSearch, search, setSearch} =
+  const { setChangeSearch, search, setSearch } =
     useContext(ChangeSearchContext);
   const [menuBar, setMenuBar] = useContext(MenuContext);
+  const { setWishlist } = useContext(WishlistContext);
   const [price, setPrice] = useState({ min: 0, max: 0 });
   const [minAndMax, setMinAndMax] = useState({});
   const [colors, setColors] = useState();
@@ -43,7 +46,10 @@ export default function СategoryItems() {
   const [loaderInputRange, setLoaderInputRange] = useState(true);
   const [colorsLoader, setLoaderColors] = useState(true);
   const [sizesLoader, setLoaderSizes] = useState(true);
-
+  const handleCloseMenu = () => {
+    setMenuBar(false);
+    setWishlist(false);
+  };
   useEffect(() => {
     setLoading(true);
     if (slug === "discount") {
@@ -98,7 +104,7 @@ export default function СategoryItems() {
       />
     </div>
   ) : (
-    <div onClick={() => setMenuBar(false)}>
+    <div onClick={() => handleCloseMenu()}>
       <ColorFilter.Provider value={{ filterColor, setFilterColor }}>
         <SizeFilter.Provider value={{ filterSize, setFilterSize }}>
           <FilterLoaders.Provider
@@ -110,6 +116,7 @@ export default function СategoryItems() {
               setMenuBar={setMenuBar}
             />
             <Menu />
+            <WishlistProducts />
             <LogoSearch
               setMenuBar={setMenuBar}
               search={search}
